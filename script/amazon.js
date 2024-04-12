@@ -71,7 +71,13 @@ document.querySelectorAll('.js-add-to-card').forEach((button)=>{
       });
     }
 
-    
-    console.log(card);
+    let cardQuantity=0;
+    card.forEach((item)=>{
+      cardQuantity+=item.quantity;
+    });
+  
+    console.log(cardQuantity); 
+
+    document.querySelector('.js-card-quantity').innerHTML=cardQuantity; 
   })
 })
