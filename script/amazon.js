@@ -1,3 +1,4 @@
+import { card } from "../data/card";
 let productsHTML='';
 
 products.forEach((product)=>{
@@ -21,11 +22,11 @@ products.forEach((product)=>{
           </div>
 
           <div class="product-price">
-             $${(product.priceCents/100).toFixed(2)}
+          ₹${(product.priceCents/100*83.54).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -67,7 +68,7 @@ document.querySelectorAll('.js-add-to-card').forEach((button)=>{
     }else{
       card.push({
         productId: productId ,
-        quantity:1
+        quantity:Math.floor(document.querySelector(`.js-quantity-selector-${productId}`).value)
       });
     }
 
@@ -78,6 +79,7 @@ document.querySelectorAll('.js-add-to-card').forEach((button)=>{
   
     console.log(cardQuantity); 
 
-    document.querySelector('.js-card-quantity').innerHTML=cardQuantity; 
+    document.querySelector('.js-card-quantity').innerHTML=cardQuantity;
+
   })
 })

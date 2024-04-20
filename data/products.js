@@ -656,5 +656,22 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "id1-example-idd",
+    image: "images/products/picture-for-example-of-id.jpg",
+    name: "Vivek Dharmwan",
+    rating: {
+      stars: 4.5,
+      count: 3157
+    },
+    priceCents: 999900,
+    keywords: [
+      "sweaters",
+      "hoodies",
+      "apparel",
+      "mens"
+    ]
   }
+  
 ];
