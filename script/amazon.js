@@ -1,4 +1,3 @@
-import { card } from "../data/card";
 let productsHTML='';
 
 products.forEach((product)=>{
