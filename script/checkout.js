@@ -1,7 +1,7 @@
 let CardSummryHTML=``;
-card.forEach((cardItem)=>{
+let matchingProduct;
+cart.forEach((cardItem)=>{
     const productId=cardItem.productId;
-    let matchingProduct;
     products.forEach((product)=>{
         if(product.id===productId){
             matchingProduct=product;
@@ -22,7 +22,7 @@ card.forEach((cardItem)=>{
             ${matchingProduct.name}
             </div>
             <div class="product-price">
-            $${formatecurrency(matchingProduct.priceCents)}
+            $${(matchingProduct.priceCents/100).toFixed(2)}
             </div>
             <div class="product-quantity">
             <span>
@@ -31,7 +31,7 @@ card.forEach((cardItem)=>{
             <span class="update-quantity-link link-primary">
                 Update
             </span>
-            <span class="delete-quantity-link link-primary">
+            <span class="delete-quantity-link link-primary js-delete-quantity-link" data-product-id=${matchingProduct.id}>
                 Delete
             </span>
             </div>
@@ -84,3 +84,10 @@ card.forEach((cardItem)=>{
     `
 });
 document.querySelector('.js-order-summary').innerHTML=CardSummryHTML;
+document.querySelectorAll('.js-delete-quantity-link').forEach((link)=>{
+    link.addEventListener('click',()=>{
+        const productId=link.dataset.productId;
+        removeFromCart(productId);
+        console.log(cart);
+    });
+});
