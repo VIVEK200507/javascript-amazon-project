@@ -52,33 +52,25 @@ products.forEach((product)=>{
         </div>`;
 })
 document.querySelector('.js-products-grid').innerHTML=productsHTML;
+
+
+function updateCartQuantity(){
+  let cardQuantity=0;
+  card.forEach((cartItem)=>{
+    cardQuantity+=cartItem.quantity;
+  });
+
+  console.log(cardQuantity); 
+
+  document.querySelector('.js-card-quantity').innerHTML=cardQuantity;
+}
+
 document.querySelectorAll('.js-add-to-card').forEach((button)=>{
   button.addEventListener('click',()=>{
     const productId=button.dataset.productId;
-    let matchingItem;
+    addToCart(productId); 
 
-    card.forEach((item)=>{
-      if(productId===item.productId){
-        matchingItem=item;
-      }
-    });
-    if(matchingItem){
-      matchingItem.quantity+=1;
-    }else{
-      card.push({
-        productId: productId ,
-        quantity:Math.floor(document.querySelector(`.js-quantity-selector-${productId}`).value)
-      });
-    }
-
-    let cardQuantity=0;
-    card.forEach((item)=>{
-      cardQuantity+=item.quantity;
-    });
-  
-    console.log(cardQuantity); 
-
-    document.querySelector('.js-card-quantity').innerHTML=cardQuantity;
+    updateCartQuantity();
 
   })
 })
