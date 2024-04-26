@@ -1,8 +1,6 @@
 let CardSummryHTML=``;
 let matchingProduct;
-
-dayjs();
-
+console.log(dayjs());
 cart.forEach((cardItem)=>{
     const productId=cardItem.productId;
     products.forEach((product)=>{
