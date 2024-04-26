@@ -63,6 +63,7 @@ function updateCartQuantity(){
   console.log(cardQuantity); 
 
   document.querySelector('.js-card-quantity').innerHTML=cardQuantity;
+  
 }
 
 document.querySelectorAll('.js-add-to-card').forEach((button)=>{
