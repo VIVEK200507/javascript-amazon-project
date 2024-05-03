@@ -4,11 +4,8 @@ import {formatCurrency} from '../utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions,getDeliveryOption} from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
-hello();
-const today=dayjs();
-const deliveryDate=today.add(7,'days');
-console.log(deliveryDate.format('dddd,MMMM D'));
 
 export function renderOrderSummry(){
   let cartSummaryHTML = '';
@@ -23,6 +20,8 @@ export function renderOrderSummry(){
     const today=dayjs();
     const deliveryDate=today.add(deliveryOption.deliveryDate,'days');
     const dataString=deliveryDate.format('dddd,MMMM D');
+
+
 
     cartSummaryHTML += `
       <div class="cart-item-container
@@ -77,6 +76,7 @@ export function renderOrderSummry(){
       const dataString=deliveryDate.format('dddd,MMMM D');
       const priceString=deliveryOption.priceCents===0?'Free':`$${formatCurrency(deliveryOption.priceCents)}-`;
 
+
       const isChecked=deliveryOption.id===cartItem.deliveryOptionId;
       html+=`
         <div class="delivery-option js-delivery-option"
@@ -101,6 +101,8 @@ export function renderOrderSummry(){
     return html;
   }
 
+  
+
   document.querySelector('.js-order-summary')
     .innerHTML = cartSummaryHTML;
 
@@ -114,6 +116,7 @@ export function renderOrderSummry(){
           `.js-cart-item-container-${productId}`
         );
         container.remove();
+        renderPaymentSummary();
       });
 
     });
@@ -123,6 +126,7 @@ export function renderOrderSummry(){
         const {productId,deliveryOptionId}=elemenet.dataset;
         updateDeliveryOption(productId,deliveryOptionId);
         renderOrderSummry();
+        renderPaymentSummary();
       });
     });
   }
