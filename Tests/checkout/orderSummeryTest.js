@@ -9,7 +9,7 @@ describe('suit:renderOrderSummary',()=>{
     beforeAll((done)=>{
         loadProductsFetch().then(()=>{
             done();
-        })
+        });
     });
 
     beforeEach(()=>{
